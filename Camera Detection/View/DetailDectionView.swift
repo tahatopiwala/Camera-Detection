@@ -15,6 +15,7 @@ class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
         
         backgroundColor = .lightGray
         isUserInteractionEnabled = true
+        alpha = 0.5
         
         ViewsOriginalCenter = center
         ForDragAnimatableInitializeTapGesture()

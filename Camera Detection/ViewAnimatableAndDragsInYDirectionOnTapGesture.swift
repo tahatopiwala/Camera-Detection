@@ -12,6 +12,8 @@ class ViewAnimatableAndDragsInYDirectionOnTapGesture: UIView {
     
     var ViewsOriginalCenter: CGPoint!
     
+    let heightOffset: CGFloat = 0
+    
     func ForDragAnimatableInitializeTapGesture() {
         self.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(ViewAnimatableAndDragsInYDirectionOnTapGesture.handleSwipeUp(sender:))))
     }
@@ -33,7 +35,7 @@ class ViewAnimatableAndDragsInYDirectionOnTapGesture: UIView {
         
         let translation = sender.translation(in: view)
         let currentCenterPositionY = view.center.y + translation.y
-        if (currentCenterPositionY >= ((view.frame.height / 2) + 20) && currentCenterPositionY <= ViewsOriginalCenter.y) {
+        if (currentCenterPositionY >= ((view.frame.height / 2) + heightOffset) && currentCenterPositionY <= ViewsOriginalCenter.y) {
             view.center = CGPoint(x: view.center.x, y: currentCenterPositionY)
             sender.setTranslation(CGPoint.zero, in: view)
         }
@@ -49,7 +51,7 @@ class ViewAnimatableAndDragsInYDirectionOnTapGesture: UIView {
         if (percentageChange > 0.90) {
             animate(view: view, for: ViewsOriginalCenter)
         } else if (percentageChange < 0.60) {
-            animate(view: view, for: CGPoint(x: ViewsOriginalCenter.x, y: (view.frame.height / 2) + 20))
+            animate(view: view, for: CGPoint(x: ViewsOriginalCenter.x, y: (view.frame.height / 2) + heightOffset))
         }
     }
     

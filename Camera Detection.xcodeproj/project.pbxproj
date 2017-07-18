@@ -58,9 +58,9 @@
 		9B9E40C81F1DC2D9002875E8 /* Camera Detection */ = {
 			isa = PBXGroup;
 			children = (
-				9B9E40FD1F1DE04E002875E8 /* ViewGestureClasses */,
 				9B9E40C91F1DC2D9002875E8 /* AppDelegate.swift */,
 				9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */,
+				9B9E40FD1F1DE04E002875E8 /* ViewGestureClasses */,
 				9B9E41011F1DE3C4002875E8 /* View */,
 				9B9E40CD1F1DC2D9002875E8 /* Main.storyboard */,
 				9B9E40D01F1DC2D9002875E8 /* Assets.xcassets */,

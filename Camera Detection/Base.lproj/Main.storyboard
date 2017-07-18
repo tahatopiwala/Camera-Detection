@@ -19,8 +19,23 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ieg-0g-27q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ieg-0g-27q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Z2J-Vy-UpM"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ieg-0g-27q" secondAttribute="bottom" id="dNv-xY-y5a"/>
+                            <constraint firstAttribute="trailing" secondItem="ieg-0g-27q" secondAttribute="trailing" id="stP-3f-a9z"/>
+                            <constraint firstItem="ieg-0g-27q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wQW-K7-7E6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraView" destination="ieg-0g-27q" id="jaA-mb-iBx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
