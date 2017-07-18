@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		9B9E40CA1F1DC2D9002875E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E40C91F1DC2D9002875E8 /* AppDelegate.swift */; };
-		9B9E40CC1F1DC2D9002875E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E40CB1F1DC2D9002875E8 /* ViewController.swift */; };
 		9B9E40CF1F1DC2D9002875E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B9E40CD1F1DC2D9002875E8 /* Main.storyboard */; };
 		9B9E40D11F1DC2D9002875E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B9E40D01F1DC2D9002875E8 /* Assets.xcassets */; };
 		9B9E40D41F1DC2D9002875E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B9E40D21F1DC2D9002875E8 /* LaunchScreen.storyboard */; };
 		9B9E40FA1F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E40F91F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift */; };
 		9B9E40FC1F1DE02B002875E8 /* DetailDectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E40FB1F1DE02B002875E8 /* DetailDectionView.swift */; };
+		9B9E41031F1DE7A5002875E8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9B9E40C61F1DC2D9002875E8 /* Camera Detection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camera Detection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9E40C91F1DC2D9002875E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B9E40CB1F1DC2D9002875E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B9E40CE1F1DC2D9002875E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B9E40D01F1DC2D9002875E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B9E40D31F1DC2D9002875E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B9E40D51F1DC2D9002875E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B9E40F91F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAnimatableAndDragsInYDirectionOnTapGesture.swift; sourceTree = "<group>"; };
 		9B9E40FB1F1DE02B002875E8 /* DetailDectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDectionView.swift; sourceTree = "<group>"; };
+		9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +60,8 @@
 			children = (
 				9B9E40FD1F1DE04E002875E8 /* ViewGestureClasses */,
 				9B9E40C91F1DC2D9002875E8 /* AppDelegate.swift */,
-				9B9E40CB1F1DC2D9002875E8 /* ViewController.swift */,
-				9B9E40FB1F1DE02B002875E8 /* DetailDectionView.swift */,
+				9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */,
+				9B9E41011F1DE3C4002875E8 /* View */,
 				9B9E40CD1F1DC2D9002875E8 /* Main.storyboard */,
 				9B9E40D01F1DC2D9002875E8 /* Assets.xcassets */,
 				9B9E40D21F1DC2D9002875E8 /* LaunchScreen.storyboard */,
@@ -76,6 +76,14 @@
 				9B9E40F91F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift */,
 			);
 			name = ViewGestureClasses;
+			sourceTree = "<group>";
+		};
+		9B9E41011F1DE3C4002875E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B9E40FB1F1DE02B002875E8 /* DetailDectionView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9E40FA1F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift in Sources */,
-				9B9E40CC1F1DC2D9002875E8 /* ViewController.swift in Sources */,
+				9B9E41031F1DE7A5002875E8 /* CameraViewController.swift in Sources */,
 				9B9E40FC1F1DE02B002875E8 /* DetailDectionView.swift in Sources */,
 				9B9E40CA1F1DC2D9002875E8 /* AppDelegate.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CameraViewController.swift
 //  Camera Detection
 //
 //  Created by Taha Topiwala on 7/17/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CameraViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,4 +17,5 @@ class ViewController: UIViewController {
         detectionInformationAndControlView.frame = CGRect(x: 0, y: view.frame.height - 80, width: view.frame.width, height: view.frame.height)
         view.addSubview(detectionInformationAndControlView)
     }
+
 }
