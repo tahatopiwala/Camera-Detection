@@ -23,12 +23,11 @@ class CameraViewController: UIViewController {
         let cameraSetup = setUpCamera()
         if cameraSetup {
             DispatchQueue.main.async {
-                self.avCaptureSession.startRunning()
+                //self.avCaptureSession.startRunning()
             }
         }
         
-        let detectionInformationAndControlView = DetailDectionView(frame: CGRect())
-        detectionInformationAndControlView.frame = CGRect(x: 0, y: view.frame.height - 80, width: view.frame.width, height: view.frame.height)
+        let detectionInformationAndControlView = DetailDectionView(frame: CGRect(x: 0, y: view.frame.height - 80, width: view.frame.width, height: view.frame.height))
         view.addSubview(detectionInformationAndControlView)
     }
     

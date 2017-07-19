@@ -14,6 +14,8 @@
 		9B9E40FA1F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E40F91F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift */; };
 		9B9E40FC1F1DE02B002875E8 /* DetailDectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E40FB1F1DE02B002875E8 /* DetailDectionView.swift */; };
 		9B9E41031F1DE7A5002875E8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */; };
+		9B9E41051F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E41041F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift */; };
+		9BBC288D1F1F53D700103865 /* UIViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		9B9E40F91F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAnimatableAndDragsInYDirectionOnTapGesture.swift; sourceTree = "<group>"; };
 		9B9E40FB1F1DE02B002875E8 /* DetailDectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDectionView.swift; sourceTree = "<group>"; };
 		9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		9B9E41041F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInformationTableViewCell.swift; sourceTree = "<group>"; };
+		9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 			children = (
 				9B9E40C91F1DC2D9002875E8 /* AppDelegate.swift */,
 				9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */,
+				9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */,
 				9B9E40FD1F1DE04E002875E8 /* ViewGestureClasses */,
 				9B9E41011F1DE3C4002875E8 /* View */,
 				9B9E40CD1F1DC2D9002875E8 /* Main.storyboard */,
@@ -82,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				9B9E40FB1F1DE02B002875E8 /* DetailDectionView.swift */,
+				9B9E41041F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,7 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9E40FA1F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift in Sources */,
+				9B9E41051F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift in Sources */,
 				9B9E41031F1DE7A5002875E8 /* CameraViewController.swift in Sources */,
+				9BBC288D1F1F53D700103865 /* UIViewExtentions.swift in Sources */,
 				9B9E40FC1F1DE02B002875E8 /* DetailDectionView.swift in Sources */,
 				9B9E40CA1F1DC2D9002875E8 /* AppDelegate.swift in Sources */,
 			);
