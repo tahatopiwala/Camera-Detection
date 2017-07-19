@@ -11,6 +11,10 @@ import AVFoundation
 
 class CameraViewController: UIViewController {
     
+    var detectionInformationAndControlView: DetailDectionView!
+    
+    let dummyTableData = ["Camera", "Photo", "GoPro", "Sony still camera"]
+    
     let avCaptureSession = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
     let videoOutput = AVCaptureVideoDataOutput()
@@ -27,8 +31,11 @@ class CameraViewController: UIViewController {
             }
         }
         
-        let detectionInformationAndControlView = DetailDectionView(frame: CGRect(x: 0, y: view.frame.height - 80, width: view.frame.width, height: view.frame.height))
+        detectionInformationAndControlView = DetailDectionView(frame: CGRect(x: 0, y: view.frame.height - 80, width: view.frame.width, height: view.frame.height))
+        detectionInformationAndControlView.delegate = self
         view.addSubview(detectionInformationAndControlView)
+        
+        detectionInformationAndControlView.updateViewData(with: dummyTableData)
     }
     
     func setUpCamera() -> Bool {
@@ -121,5 +128,17 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         let image = UIImage(data: dataImage)
         
 //        performSegue(withIdentifier: segueNameToStillImage, sender: image)
+    }
+}
+
+extension CameraViewController: CameraActionDelegate {
+    
+    func capturePhoto() {
+        print("Capture New Photo")
+    }
+    
+    func toggleCameraSession(value: Bool) -> Bool? {
+        print(value)
+        return value
     }
 }

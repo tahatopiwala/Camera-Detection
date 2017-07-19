@@ -16,6 +16,7 @@
 		9B9E41031F1DE7A5002875E8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */; };
 		9B9E41051F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E41041F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift */; };
 		9BBC288D1F1F53D700103865 /* UIViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */; };
+		9BBC288F1F1F5C1100103865 /* CameraControlCenterUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC288E1F1F5C1100103865 /* CameraControlCenterUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9B9E41041F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInformationTableViewCell.swift; sourceTree = "<group>"; };
 		9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentions.swift; sourceTree = "<group>"; };
+		9BBC288E1F1F5C1100103865 /* CameraControlCenterUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlCenterUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +66,9 @@
 			children = (
 				9B9E40C91F1DC2D9002875E8 /* AppDelegate.swift */,
 				9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */,
-				9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */,
 				9B9E40FD1F1DE04E002875E8 /* ViewGestureClasses */,
 				9B9E41011F1DE3C4002875E8 /* View */,
+				9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */,
 				9B9E40CD1F1DC2D9002875E8 /* Main.storyboard */,
 				9B9E40D01F1DC2D9002875E8 /* Assets.xcassets */,
 				9B9E40D21F1DC2D9002875E8 /* LaunchScreen.storyboard */,
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				9B9E40FB1F1DE02B002875E8 /* DetailDectionView.swift */,
+				9BBC288E1F1F5C1100103865 /* CameraControlCenterUIView.swift */,
 				9B9E41041F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift */,
 			);
 			path = View;
@@ -169,6 +172,7 @@
 				9BBC288D1F1F53D700103865 /* UIViewExtentions.swift in Sources */,
 				9B9E40FC1F1DE02B002875E8 /* DetailDectionView.swift in Sources */,
 				9B9E40CA1F1DC2D9002875E8 /* AppDelegate.swift in Sources */,
+				9BBC288F1F1F5C1100103865 /* CameraControlCenterUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
