@@ -12,6 +12,10 @@ enum AppNotificationCenterName: String {
     case changeArrowImage = "changeArrowImage"
 }
 
+enum SegueNames: String {
+    case toImageDetail = "toImageDetail"
+}
+
 extension Double {
     func roundTo(places: Int) -> Double {
         let divisor = pow(10.0, Double(places))

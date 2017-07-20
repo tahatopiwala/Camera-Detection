@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,10 +36,59 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="ieg-0g-27q" id="jaA-mb-iBx"/>
+                        <segue destination="YPX-Ja-214" kind="show" identifier="toImageDetail" id="tUZ-w2-fFa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Image Detail View Controller-->
+        <scene sceneID="jhV-pe-aLX">
+            <objects>
+                <viewController id="YPX-Ja-214" customClass="ImageDetailViewController" customModule="Camera_Detection" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F01-o7-duc"/>
+                        <viewControllerLayoutGuide type="bottom" id="cjs-WM-51V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2LF-eh-HA5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mmo-Ec-dQU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yb-im-7cy">
+                                <rect key="frame" x="319" y="36" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4Oc-tW-7dA"/>
+                                    <constraint firstAttribute="width" constant="40" id="MAG-ZL-gG5"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="close"/>
+                                <connections>
+                                    <action selector="closeView:" destination="YPX-Ja-214" eventType="touchUpInside" id="Hqn-lf-TJs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cjs-WM-51V" firstAttribute="top" secondItem="Mmo-Ec-dQU" secondAttribute="bottom" id="AN3-9x-oX8"/>
+                            <constraint firstItem="4Yb-im-7cy" firstAttribute="top" secondItem="F01-o7-duc" secondAttribute="bottom" constant="16" id="NPh-zE-hG8"/>
+                            <constraint firstAttribute="trailing" secondItem="Mmo-Ec-dQU" secondAttribute="trailing" id="U5c-9Y-Z2j"/>
+                            <constraint firstItem="Mmo-Ec-dQU" firstAttribute="leading" secondItem="2LF-eh-HA5" secondAttribute="leading" id="b0y-To-bhi"/>
+                            <constraint firstItem="Mmo-Ec-dQU" firstAttribute="top" secondItem="2LF-eh-HA5" secondAttribute="top" id="gFY-AV-aEI"/>
+                            <constraint firstItem="4Yb-im-7cy" firstAttribute="trailing" secondItem="2LF-eh-HA5" secondAttribute="trailingMargin" id="mRm-L6-SJO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="stillImageView" destination="Mmo-Ec-dQU" id="gbB-DL-Aim"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I7S-3j-hFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1452" y="35.532233883058474"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="close" width="104" height="104"/>
+    </resources>
 </document>

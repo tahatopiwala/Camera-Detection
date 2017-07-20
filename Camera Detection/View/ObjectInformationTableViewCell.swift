@@ -17,7 +17,6 @@ class ObjectInformationTableViewCell: UITableViewCell {
     }()
     
     func configureCell(description: String) {
-        
         setUpView()
         
         descriptionLabel.text = description
@@ -26,7 +25,6 @@ class ObjectInformationTableViewCell: UITableViewCell {
     func setUpView() {
         addSubview(descriptionLabel)
         addConstraintsWithFormat(format: "H:|-[v0]", views: descriptionLabel)
-        
         addConstraint(NSLayoutConstraint(item: descriptionLabel, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 1))
         
         backgroundColor = .clear

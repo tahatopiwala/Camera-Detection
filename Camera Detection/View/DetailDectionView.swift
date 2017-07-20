@@ -8,14 +8,15 @@
 
 import UIKit
 
-protocol CameraActionDelegate {
+@objc protocol CameraActionDelegate {
     func capturePhoto()
     func toggleCameraSessionFor(value: Bool) -> Bool
+    @objc optional func updateObservationCount(with value: Int)
 }
 
 class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
     
-    var delegate: CameraActionDelegate!
+    var delegate: CameraActionDelegate?
     
     var tableData = [String]()
     
@@ -32,8 +33,13 @@ class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
         view.backgroundColor = .clear
         view.separatorStyle = .none
         view.allowsSelection = false
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 2
+        return view
+    }()
+    
+    let stepperView: UIStepper = {
+        let view = UIStepper()
+        view.maximumValue = 40
+        view.minimumValue = 1
         return view
     }()
     
@@ -50,7 +56,6 @@ class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
         setUpViews()
     }
     
-    
     func setUpViews() {
         
         controlCenterView.delegate = self
@@ -61,10 +66,15 @@ class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
         
         addSubview(controlCenterView)
         addSubview(tableView)
+        addSubview(stepperView)
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: controlCenterView)
-        addConstraintsWithFormat(format: "H:|[v0]-100-|", views: tableView)
-        addConstraintsWithFormat(format: "V:|[v0(60)][v1]|", views: controlCenterView, tableView)
+        addConstraintsWithFormat(format: "H:|[v0]-\(frame.width * 0.25)-|", views: tableView)
+        addConstraintsWithFormat(format: "V:|[v0(60)][v1]-[v2]-|", views: controlCenterView, tableView, stepperView)
+        
+        addConstraint(NSLayoutConstraint(item: stepperView, attribute: .centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        
+        stepperView.addTarget(self, action: #selector(DetailDectionView.updateDataCount(_:)), for: .touchUpInside)
     }
     
     override var frame: CGRect {
@@ -98,6 +108,11 @@ extension DetailDectionView: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension DetailDectionView {
+    
+    @objc func updateDataCount(_ sender: UIStepper) {
+        delegate?.updateObservationCount!(with: Int(sender.value))
+    }
+    
     func updateViewData(with data: Any?) {
         guard let data = data as? [String] else { return }
         tableData = data
@@ -110,10 +125,10 @@ extension DetailDectionView {
 extension DetailDectionView: CameraActionDelegate {
     
     func toggleCameraSessionFor(value: Bool) -> Bool {
-        return delegate.toggleCameraSessionFor(value: value)
+        return (delegate?.toggleCameraSessionFor(value: value))!
     }
     
     func capturePhoto() {
-        delegate.capturePhoto()
+        delegate?.capturePhoto()
     }
 }

@@ -12,7 +12,7 @@ import Vision
 
 class CameraViewController: UIViewController {
     
-    var observationCount = 5
+    var observationCount = 1
     
     var detectionInformationAndControlView: DetailDectionView!
     
@@ -118,11 +118,21 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         
         let image = UIImage(data: dataImage)
         
-//        performSegue(withIdentifier: segueNameToStillImage, sender: image)
+        performSegue(withIdentifier: SegueNames.toImageDetail.rawValue, sender: image)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? ImageDetailViewController, let stillimage = sender as? UIImage else { return }
+        vc.image = stillimage
+    }
+    
 }
 
 extension CameraViewController: CameraActionDelegate {
+    
+    func updateObservationCount(with value: Int) {
+        self.observationCount = value
+    }
     
     func capturePhoto() {
         let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])
