@@ -57,7 +57,7 @@ class CameraControlCenterUIView: UIView {
     @objc func toggleVideoSession(_ sender: UIButton) {
         cameraSession = delegate.toggleCameraSessionFor(value: !cameraSession)
         
-        if !cameraSession {
+        if cameraSession {
             videoCaptureButton.setImage(#imageLiteral(resourceName: "toggle-off"), for: .normal)
         } else {
             videoCaptureButton.setImage(#imageLiteral(resourceName: "toggle-on"), for: .normal)

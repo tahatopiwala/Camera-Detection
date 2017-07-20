@@ -13,10 +13,6 @@ protocol CameraActionDelegate {
     func toggleCameraSessionFor(value: Bool) -> Bool
 }
 
-protocol CameraControlCenterDelegate {
-    func changeArrowImage(image: UIImage)
-}
-
 class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
     
     var delegate: CameraActionDelegate!

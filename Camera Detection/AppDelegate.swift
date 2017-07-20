@@ -8,10 +8,6 @@
 
 import UIKit
 
-enum AppNotificationCenterName: String {
-    case changeArrowImage = "changeArrowImage"
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

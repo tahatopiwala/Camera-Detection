@@ -17,6 +17,8 @@
 		9B9E41051F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E41041F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift */; };
 		9BBC288D1F1F53D700103865 /* UIViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */; };
 		9BBC288F1F1F5C1100103865 /* CameraControlCenterUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC288E1F1F5C1100103865 /* CameraControlCenterUIView.swift */; };
+		9BBC28911F20628E00103865 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC28901F20628E00103865 /* Inceptionv3.mlmodel */; };
+		9BBC28931F20688500103865 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC28921F20688500103865 /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		9B9E41041F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInformationTableViewCell.swift; sourceTree = "<group>"; };
 		9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentions.swift; sourceTree = "<group>"; };
 		9BBC288E1F1F5C1100103865 /* CameraControlCenterUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlCenterUIView.swift; sourceTree = "<group>"; };
+		9BBC28901F20628E00103865 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../../Downloads/Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		9BBC28921F20688500103865 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 			children = (
 				9B9E40C91F1DC2D9002875E8 /* AppDelegate.swift */,
 				9B9E41021F1DE7A5002875E8 /* CameraViewController.swift */,
+				9BBC28921F20688500103865 /* Util.swift */,
 				9B9E40FD1F1DE04E002875E8 /* ViewGestureClasses */,
 				9B9E41011F1DE3C4002875E8 /* View */,
 				9BBC288C1F1F53D700103865 /* UIViewExtentions.swift */,
@@ -73,6 +78,7 @@
 				9B9E40D01F1DC2D9002875E8 /* Assets.xcassets */,
 				9B9E40D21F1DC2D9002875E8 /* LaunchScreen.storyboard */,
 				9B9E40D51F1DC2D9002875E8 /* Info.plist */,
+				9BBC28901F20628E00103865 /* Inceptionv3.mlmodel */,
 			);
 			path = "Camera Detection";
 			sourceTree = "<group>";
@@ -167,10 +173,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9E40FA1F1DDFEC002875E8 /* ViewAnimatableAndDragsInYDirectionOnTapGesture.swift in Sources */,
+				9BBC28931F20688500103865 /* Util.swift in Sources */,
 				9B9E41051F1DEDB3002875E8 /* ObjectInformationTableViewCell.swift in Sources */,
 				9B9E41031F1DE7A5002875E8 /* CameraViewController.swift in Sources */,
 				9BBC288D1F1F53D700103865 /* UIViewExtentions.swift in Sources */,
 				9B9E40FC1F1DE02B002875E8 /* DetailDectionView.swift in Sources */,
+				9BBC28911F20628E00103865 /* Inceptionv3.mlmodel in Sources */,
 				9B9E40CA1F1DC2D9002875E8 /* AppDelegate.swift in Sources */,
 				9BBC288F1F1F5C1100103865 /* CameraControlCenterUIView.swift in Sources */,
 			);

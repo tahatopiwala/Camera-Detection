@@ -8,12 +8,15 @@
 
 import UIKit
 import AVFoundation
+import Vision
 
 class CameraViewController: UIViewController {
     
+    var observationCount = 5
+    
     var detectionInformationAndControlView: DetailDectionView!
     
-    let dummyTableData = ["Camera", "Photo", "GoPro", "Sony still camera"]
+    var observationTableData = [String]()
     
     let avCaptureSession = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
@@ -34,7 +37,6 @@ class CameraViewController: UIViewController {
         detectionInformationAndControlView = DetailDectionView(frame: CGRect(x: 0, y: view.frame.height - 60, width: view.frame.width, height: view.frame.height))
         detectionInformationAndControlView.delegate = self
         view.addSubview(detectionInformationAndControlView)
-        detectionInformationAndControlView.updateViewData(with: dummyTableData)
     }
     
     func setUpCamera() -> Bool {
@@ -66,42 +68,37 @@ class CameraViewController: UIViewController {
     
     func perfromImageDetection(with pixelBuffer: CVPixelBuffer) {
         
-//        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
+        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
         
-//        let request = VNCoreMLRequest(model: model) { (request, error) in
-//
-//            guard let results = request.results as? [VNClassificationObservation], let observation = results.first else { return }
-//
-//            guard let value = observation.identifier.components(separatedBy: ",").first else { return }
-//            let confidenceValue = Double(observation.confidence).roundTo(places: 2)
-//            DispatchQueue.main.async {
-//                self.predictionLabel.text = "\(value.capitalized.trimmingCharacters(in: CharacterSet.whitespaces)) (\(confidenceValue))"
-//            }
-//        }
-//
-//        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
-//
-//        do {
-//            try handler.perform([request])
-//        } catch let error {
-//            print(error)
-//        }
+        let request = VNCoreMLRequest(model: model) { (request, error) in
+            
+            guard let observationResults = request.results as? [VNClassificationObservation] else { return }
+            
+            if observationResults.count >= self.observationCount {
+                let observationSubset = observationResults.slice(for: self.observationCount)
+                self.observationTableData.removeAll()
+                for observation in observationSubset {
+                    guard let value = observation.identifier.components(separatedBy: ",").first else { return }
+                    let confidenceValue = Double(observation.confidence).roundTo(places: 2)
+                    self.observationTableData.append("\(value) (\(confidenceValue))")
+                }
+                self.detectionInformationAndControlView.updateViewData(with: self.observationTableData)
+            }
+        }
+        
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        
+        do {
+            try handler.perform([request])
+        } catch let error {
+            print(error)
+        }
     }
 }
 
 // Video Capture Delegate
 
 extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
-//    @IBAction func record(_ sender: UIButton) {
-//        if avCaptureSession.isRunning {
-//            turnRecordButton(to: #imageLiteral(resourceName: "record"))
-//            avCaptureSession.stopRunning()
-//        } else {
-//            turnRecordButton(to: #imageLiteral(resourceName: "stop"))
-//            avCaptureSession.startRunning()
-//        }
-//    }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
@@ -114,11 +111,6 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 // Still Photo Delegate
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
-    
-    @IBAction func takeImage(_ sender: Any) {
-        let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])
-        photoOutput.capturePhoto(with: photoSettings, delegate: self)
-    }
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
@@ -133,7 +125,8 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
 extension CameraViewController: CameraActionDelegate {
     
     func capturePhoto() {
-        print("Capture New Photo")
+        let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])
+        photoOutput.capturePhoto(with: photoSettings, delegate: self)
     }
     
     func toggleCameraSessionFor(value: Bool) -> Bool {
