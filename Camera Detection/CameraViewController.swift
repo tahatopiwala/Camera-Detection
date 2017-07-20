@@ -27,14 +27,13 @@ class CameraViewController: UIViewController {
         let cameraSetup = setUpCamera()
         if cameraSetup {
             DispatchQueue.main.async {
-                //self.avCaptureSession.startRunning()
+                self.avCaptureSession.startRunning()
             }
         }
         
-        detectionInformationAndControlView = DetailDectionView(frame: CGRect(x: 0, y: view.frame.height - 80, width: view.frame.width, height: view.frame.height))
+        detectionInformationAndControlView = DetailDectionView(frame: CGRect(x: 0, y: view.frame.height - 60, width: view.frame.width, height: view.frame.height))
         detectionInformationAndControlView.delegate = self
         view.addSubview(detectionInformationAndControlView)
-        
         detectionInformationAndControlView.updateViewData(with: dummyTableData)
     }
     
@@ -137,8 +136,12 @@ extension CameraViewController: CameraActionDelegate {
         print("Capture New Photo")
     }
     
-    func toggleCameraSession(value: Bool) -> Bool? {
-        print(value)
+    func toggleCameraSessionFor(value: Bool) -> Bool {
+        if value {
+            avCaptureSession.startRunning()
+        } else {
+            avCaptureSession.stopRunning()
+        }
         return value
     }
 }

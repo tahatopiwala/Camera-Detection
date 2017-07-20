@@ -49,15 +49,21 @@ class ViewAnimatableAndDragsInYDirectionOnTapGesture: UIView {
         let percentageChange = currentCenterPositionY / ViewsOriginalCenter.y
         
         if (percentageChange > 0.90) {
-            animate(view: view, for: ViewsOriginalCenter)
+            animate(view: view, for: ViewsOriginalCenter) {
+                NotificationCenter.default.post(name: NSNotification.Name(AppNotificationCenterName.changeArrowImage.rawValue), object: nil, userInfo: ["image" : #imageLiteral(resourceName: "arrow-top")])
+            }
         } else if (percentageChange < 0.60) {
-            animate(view: view, for: CGPoint(x: ViewsOriginalCenter.x, y: (view.frame.height / 2) + heightOffset))
+            animate(view: view, for: CGPoint(x: ViewsOriginalCenter.x, y: (view.frame.height / 2) + heightOffset)) {
+                NotificationCenter.default.post(name: NSNotification.Name(AppNotificationCenterName.changeArrowImage.rawValue), object: nil, userInfo: ["image" : #imageLiteral(resourceName: "arrow-down")])
+            }
         }
     }
     
-    private func animate(view: UIView, for center: CGPoint) {
+    private func animate(view: UIView, for center: CGPoint, callback: @escaping () -> ()) {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseIn, animations: {
             view.center = center
-        }, completion: nil)
+        }, completion: { success in
+            callback()
+        })
     }
 }

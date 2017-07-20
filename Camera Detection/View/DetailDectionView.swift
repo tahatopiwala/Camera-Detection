@@ -10,12 +10,16 @@ import UIKit
 
 protocol CameraActionDelegate {
     func capturePhoto()
-    func toggleCameraSession(value: Bool) -> Bool?
+    func toggleCameraSessionFor(value: Bool) -> Bool
+}
+
+protocol CameraControlCenterDelegate {
+    func changeArrowImage(image: UIImage)
 }
 
 class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
     
-    var delegate: CameraActionDelegate?
+    var delegate: CameraActionDelegate!
     
     var tableData = [String]()
     
@@ -23,13 +27,13 @@ class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
     
     let controlCenterView: CameraControlCenterUIView = {
         let view = CameraControlCenterUIView()
-        view.backgroundColor = UIColor.blue
+        view.backgroundColor = .clear
         return view
     }()
     
     let tableView: UITableView = {
         let view = UITableView()
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = .clear
         view.separatorStyle = .none
         view.allowsSelection = false
         view.layer.borderColor = UIColor.white.cgColor
@@ -64,7 +68,7 @@ class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: controlCenterView)
         addConstraintsWithFormat(format: "H:|[v0]-100-|", views: tableView)
-        addConstraintsWithFormat(format: "V:|[v0(80)][v1]|", views: controlCenterView, tableView)
+        addConstraintsWithFormat(format: "V:|[v0(60)][v1]|", views: controlCenterView, tableView)
     }
     
     override var frame: CGRect {
@@ -101,17 +105,19 @@ extension DetailDectionView {
     func updateViewData(with data: Any?) {
         guard let data = data as? [String] else { return }
         tableData = data
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
 extension DetailDectionView: CameraActionDelegate {
     
-    func toggleCameraSession(value: Bool) -> Bool? {
-        return delegate?.toggleCameraSession(value: value)
+    func toggleCameraSessionFor(value: Bool) -> Bool {
+        return delegate.toggleCameraSessionFor(value: value)
     }
     
     func capturePhoto() {
-        delegate?.capturePhoto()
+        delegate.capturePhoto()
     }
 }
