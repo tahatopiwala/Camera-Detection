@@ -14,19 +14,19 @@ class CameraControlCenterUIView: UIView {
     
     var cameraSession: Bool = true
     
-    var captureStillImageButton: UIButton = {
+    let captureStillImageButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "capture-still"), for: .normal)
         return button
     }()
     
-    var videoCaptureButton: UIButton = {
+    let videoCaptureButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "toggle-off"), for: .normal)
         return button
     }()
     
-    var arrowTopImage: UIImageView = {
+    let arrowTopImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "arrow-top")
         return imageView
@@ -69,22 +69,32 @@ class CameraControlCenterUIView: UIView {
         captureStillImageButton.addTarget(self, action: #selector(CameraControlCenterUIView.captureStillImage(_:)), for: UIControlEvents.touchUpInside)
         videoCaptureButton.addTarget(self, action: #selector(CameraControlCenterUIView.toggleVideoSession(_:)), for: UIControlEvents.touchUpInside)
         
-        addSubview(captureStillImageButton)
-        addSubview(arrowTopImage)
-        addSubview(videoCaptureButton)
+        let stackView = UIStackView()
         
-        addConstraintsWithFormat(format: "H:|-16-[v0(40)]", views: captureStillImageButton)
-        addConstraintsWithFormat(format: "V:[v0(40)]", views: captureStillImageButton)
-        addConstraint(NSLayoutConstraint(item: captureStillImageButton, attribute: .centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.alignment = UIStackViewAlignment.center
         
-        addConstraintsWithFormat(format: "H:[v0(40)]", views: arrowTopImage)
-        addConstraintsWithFormat(format: "V:[v0(40)]", views: arrowTopImage)
-        addConstraint(NSLayoutConstraint(item: arrowTopImage, attribute: .centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: arrowTopImage, attribute: .centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         
-        addConstraintsWithFormat(format: "H:[v0(40)]-16-|", views: videoCaptureButton)
-        addConstraintsWithFormat(format: "V:[v0(40)]", views: videoCaptureButton)
-        addConstraint(NSLayoutConstraint(item: videoCaptureButton, attribute: .centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        stackView.addArrangedSubview(captureStillImageButton)
+        stackView.addArrangedSubview(videoCaptureButton)
+        stackView.addArrangedSubview(arrowTopImage)
+        
+        addSubview(stackView)
+        
+        addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: stackView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: stackView)
+        
+        stackView.addConstraintsWithFormat(format: "H:[v0(40)]", views: captureStillImageButton)
+        stackView.addConstraintsWithFormat(format: "V:[v0(40)]", views: captureStillImageButton)
+        
+        stackView.addConstraintsWithFormat(format: "H:[v0(40)]", views: videoCaptureButton)
+        stackView.addConstraintsWithFormat(format: "V:[v0(40)]", views: videoCaptureButton)
+        
+        stackView.addConstraintsWithFormat(format: "H:[v0(40)]", views: arrowTopImage)
+        stackView.addConstraintsWithFormat(format: "V:[v0(40)]", views: arrowTopImage)
+        
+        
     }
 }
 

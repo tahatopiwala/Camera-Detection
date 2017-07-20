@@ -60,6 +60,7 @@ class CameraViewController: UIViewController {
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: avCaptureSession)
         previewLayer.frame = cameraView.frame
+        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         cameraView.layer.addSublayer(previewLayer)
         
@@ -125,7 +126,6 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         guard let vc = segue.destination as? ImageDetailViewController, let stillimage = sender as? UIImage else { return }
         vc.image = stillimage
     }
-    
 }
 
 extension CameraViewController: CameraActionDelegate {

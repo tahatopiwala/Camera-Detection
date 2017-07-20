@@ -10,7 +10,7 @@ import UIKit
 
 class ObjectInformationTableViewCell: UITableViewCell {
     
-    var descriptionLabel: UILabel = {
+    let descriptionLabel: UILabel = {
         let view = UILabel()
         view.textColor = UIColor.white
         return view

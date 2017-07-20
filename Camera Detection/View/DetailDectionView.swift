@@ -40,6 +40,7 @@ class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
         let view = UIStepper()
         view.maximumValue = 40
         view.minimumValue = 1
+        view.tintColor = .white
         return view
     }()
     
