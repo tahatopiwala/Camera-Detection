@@ -51,7 +51,6 @@ class DetailDectionView: ViewAnimatableAndDragsInYDirectionOnTapGesture {
         isUserInteractionEnabled = true
         alpha = 1
         
-        ViewsOriginalCenter = center
         ForDragAnimatableInitializeTapGesture()
         
         setUpViews()

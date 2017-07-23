@@ -93,8 +93,6 @@ class CameraControlCenterUIView: UIView {
         
         stackView.addConstraintsWithFormat(format: "H:[v0(40)]", views: arrowTopImage)
         stackView.addConstraintsWithFormat(format: "V:[v0(40)]", views: arrowTopImage)
-        
-        
     }
 }
 

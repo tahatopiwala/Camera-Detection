@@ -19,7 +19,7 @@ class CameraViewController: UIViewController {
     
     var observationTableData = [String]()
     
-    let objectView: UIView = {
+    let objectDetectionView: UIView = {
         let view = UIView()
         view.frame = .zero
         view.layer.borderWidth = 3.0
@@ -44,10 +44,11 @@ class CameraViewController: UIViewController {
             }
         }
         
+        cameraView.addSubview(objectDetectionView)
+        
         detectionInformationAndControlView = DetailDectionView(frame: CGRect(x: 0, y: view.frame.height - 60, width: view.frame.width, height: view.frame.height))
         detectionInformationAndControlView.delegate = self
         view.addSubview(detectionInformationAndControlView)
-        view.addSubview(objectView)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -61,6 +62,26 @@ class CameraViewController: UIViewController {
         super.viewDidAppear(animated)
         
         UIApplication.shared.isIdleTimerDisabled = true
+    }
+    
+    override func viewWillLayoutSubviews() {
+        
+        cameraView.frame = view.frame
+        cameraLayer?.frame = cameraView.frame
+        detectionInformationAndControlView.frame = CGRect(x: 0, y: view.frame.height - 60, width: view.frame.width, height: view.frame.height)
+        
+        switch (UIDevice.current.orientation) {
+        case .portrait:
+            cameraLayer?.connection?.videoOrientation = .portrait
+        case .landscapeRight:
+            cameraLayer?.connection?.videoOrientation = .landscapeLeft
+        case .landscapeLeft:
+            cameraLayer?.connection?.videoOrientation = .landscapeRight
+        case .portraitUpsideDown:
+            cameraLayer?.connection?.videoOrientation = .portraitUpsideDown
+        default:
+            cameraLayer?.connection?.videoOrientation = .portrait
+        }
     }
     
     func setUpCamera() -> Bool {
@@ -82,8 +103,9 @@ class CameraViewController: UIViewController {
             avCaptureSession.addOutput(photoOutput)
         }
         
-        cameraView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        self.view.addSubview(cameraView)
+        cameraView = UIView(frame: view.frame)
+        cameraView.backgroundColor = .black
+        view.addSubview(cameraView)
         
         cameraLayer = AVCaptureVideoPreviewLayer(session: avCaptureSession)
         cameraLayer.frame = cameraView.frame
@@ -140,7 +162,7 @@ class CameraViewController: UIViewController {
             guard let boundingBox = observationResult?.boundingBox else { return }
             
             DispatchQueue.main.async {
-                self.objectView.frame = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: boundingBox)
+                self.objectDetectionView.frame = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: boundingBox)
             }
         }
         return request
