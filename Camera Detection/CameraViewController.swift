@@ -15,14 +15,24 @@ class CameraViewController: UIViewController {
     var observationCount = 1
     
     var detectionInformationAndControlView: DetailDectionView!
+    var cameraLayer: AVCaptureVideoPreviewLayer!
     
     var observationTableData = [String]()
+    
+    let objectView: UIView = {
+        let view = UIView()
+        view.frame = .zero
+        view.layer.borderWidth = 3.0
+        view.layer.borderColor = UIColor(displayP3Red: 253/255, green: 190/255, blue: 44/255, alpha: 1).cgColor
+        view.layer.cornerRadius = 3.0
+        return view
+    }()
     
     let avCaptureSession = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
     let videoOutput = AVCaptureVideoDataOutput()
 
-    @IBOutlet weak var cameraView: UIView!
+    var cameraView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +47,20 @@ class CameraViewController: UIViewController {
         detectionInformationAndControlView = DetailDectionView(frame: CGRect(x: 0, y: view.frame.height - 60, width: view.frame.width, height: view.frame.height))
         detectionInformationAndControlView.delegate = self
         view.addSubview(detectionInformationAndControlView)
+        view.addSubview(objectView)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if avCaptureSession.isRunning {
+            avCaptureSession.stopRunning()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     func setUpCamera() -> Bool {
@@ -58,18 +82,34 @@ class CameraViewController: UIViewController {
             avCaptureSession.addOutput(photoOutput)
         }
         
-        let previewLayer = AVCaptureVideoPreviewLayer(session: avCaptureSession)
-        previewLayer.frame = cameraView.frame
-        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        cameraView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        self.view.addSubview(cameraView)
         
-        cameraView.layer.addSublayer(previewLayer)
+        cameraLayer = AVCaptureVideoPreviewLayer(session: avCaptureSession)
+        cameraLayer.frame = cameraView.frame
+        cameraLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        cameraView.layer.addSublayer(cameraLayer)
         
         return true
     }
     
     func perfromImageDetection(with pixelBuffer: CVPixelBuffer) {
         
-        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return }
+        guard let coreMLRequest = getCoreMLRequest() else { return }
+        guard let rectangleRequest = getrectangleDetectionRequest() else { return }
+        
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        
+        do {
+            try handler.perform([coreMLRequest, rectangleRequest])
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func getCoreMLRequest() -> VNCoreMLRequest? {
+        
+        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else { return nil }
         
         let request = VNCoreMLRequest(model: model) { (request, error) in
             
@@ -87,13 +127,23 @@ class CameraViewController: UIViewController {
             }
         }
         
-        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        return request
+    }
+    
+    func getrectangleDetectionRequest() -> VNDetectRectanglesRequest? {
         
-        do {
-            try handler.perform([request])
-        } catch let error {
-            print(error)
+        let request = VNDetectRectanglesRequest { (request, error) in
+            guard let observationResults = request.results as? [VNRectangleObservation] else { return }
+            
+            let observationResult = observationResults.first
+            
+            guard let boundingBox = observationResult?.boundingBox else { return }
+            
+            DispatchQueue.main.async {
+                self.objectView.frame = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: boundingBox)
+            }
         }
+        return request
     }
 }
 

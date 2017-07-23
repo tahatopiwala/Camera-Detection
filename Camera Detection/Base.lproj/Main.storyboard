@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,29 +18,17 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ieg-0g-27q">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="ieg-0g-27q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Z2J-Vy-UpM"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ieg-0g-27q" secondAttribute="bottom" id="dNv-xY-y5a"/>
-                            <constraint firstAttribute="trailing" secondItem="ieg-0g-27q" secondAttribute="trailing" id="stP-3f-a9z"/>
-                            <constraint firstItem="ieg-0g-27q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wQW-K7-7E6"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="cameraView" destination="ieg-0g-27q" id="jaA-mb-iBx"/>
                         <segue destination="YPX-Ja-214" kind="show" identifier="toImageDetail" id="tUZ-w2-fFa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="31.884057971014496" y="38.315217391304351"/>
         </scene>
         <!--Image Detail View Controller-->
         <scene sceneID="jhV-pe-aLX">
@@ -51,14 +39,14 @@
                         <viewControllerLayoutGuide type="bottom" id="cjs-WM-51V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2LF-eh-HA5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mmo-Ec-dQU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Yb-im-7cy">
-                                <rect key="frame" x="319" y="36" width="40" height="40"/>
+                                <rect key="frame" x="354" y="36" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4Oc-tW-7dA"/>
                                     <constraint firstAttribute="width" constant="40" id="MAG-ZL-gG5"/>
